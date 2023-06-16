@@ -68,7 +68,15 @@ app.post("/tasks", (req, res) => {
   res.status(201).contentType("application/json").send(newTask);
 });
 
-
+app.get("/tasks/:id", (req, res) => {
+  const id = req.params.id;
+  const specificTask = tasks.find((specificTask) => specificTask.id == id);
+  if (!specificTask) {
+    res.sendStatus(404);
+  } else {
+    res.status(200).contentType("application/json").json(specificTask);
+  }
+});
 
 app.listen(port, () => {
   console.log(`Example App listening on port ${port}`);
