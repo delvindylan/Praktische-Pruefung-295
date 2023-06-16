@@ -89,9 +89,19 @@ app.put("/tasks/:id", (req, res) => {
       ...updatedTask,
     };
   }
-
   tasks.splice(tasks.indexOf(specificTask), 1, tasks[specificTask]);
   res.status(200).contentType("application/json").json(tasks[specificTask]);
+});
+
+app.delete("/tasks/:id", (req, res) => {
+  const id = req.params.id;
+  const specificTask = tasks.find((specificTask) => specificTask.id == id);
+  if (!specificTask) {
+    res.sendStatus(404);
+  } else {
+    tasks.splice(tasks.indexOf(specificTask), 1);
+    res.status(200).contentType("application/json").json(specificTask);
+  }
 });
 
 app.listen(port, () => {
