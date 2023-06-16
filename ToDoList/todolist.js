@@ -104,6 +104,19 @@ app.delete("/tasks/:id", (req, res) => {
   }
 });
 
+app.post("/login", (req, res) => {
+  const email = req.body.email;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; //ChatGPT
+  const password = "m295";
+
+  if (email!=="" && emailRegex.test(email) && req.body.password == password) {
+    req.session.email = email;
+    res.status(200).send("You are logged in");
+  } else {
+    res.status(401).send("Invalid email or password");
+  }
+})
+
 app.listen(port, () => {
   console.log(`Example App listening on port ${port}`);
 });
