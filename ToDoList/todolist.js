@@ -71,13 +71,7 @@ app.post("/login", (req, res) => {
 });
 
 app.get("/tasks", (req, res) => {
-  /*
- #swagger.tags = ["tasks"]
- #swagger.summary = 'Get all tasks'
- #swagger.description = 'Get the html navbar to navigate the site'
- #swagger.responses[200] = {description: "html loaded"}}
- #swagger.responses[404] = {description: "html not found"}
-*/
+
   if (isLoggedIn == true) {
     res.status(200).contentType("application/json").json(tasks);
   } else {
